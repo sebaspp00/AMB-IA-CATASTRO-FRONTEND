@@ -1,5 +1,5 @@
-import ChatButton from "./components/chat/ChatButton";
-import { UserProvider } from "./contexts/UserContext";
+import ChatButton from "@components/chat/ChatButton";
+import { UserProvider } from "@contexts/UserContext";
 
 export default function App() {
   return (

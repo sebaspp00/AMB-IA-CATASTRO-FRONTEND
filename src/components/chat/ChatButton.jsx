@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { createUser, createConversation, sendMessage } from "../../services/api";
-import { useUser } from "../../contexts/UserContext";
-import ChatWindow from "./ChatWindow";
-import { initializeChatSession } from "./utils";
+import { createUser, createConversation, sendMessage } from "@services/api";
+import { useUser } from "@contexts/UserContext";
+import ChatWindow from "@components/chat/ChatWindow";
+import { initializeChatSession } from "@components/chat/utils";
 
 export default function ChatButton() {
   const { user, userId, saveUser } = useUser();
@@ -49,7 +49,6 @@ export default function ChatButton() {
 
   return (
     <>
-      {/* 🟢 Botón flotante - Parte inferior derecha */}
       <button
         onClick={toggleChat}
         className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-all z-50"
@@ -58,7 +57,6 @@ export default function ChatButton() {
         💬
       </button>
 
-      {/* 🗨️ Ventana de chat */}
       <ChatWindow
         isOpen={isOpen}
         onClose={toggleChat}

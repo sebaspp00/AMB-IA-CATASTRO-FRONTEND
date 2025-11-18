@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { sendMessage } from "../../services/api";
-import ChatForm from "./ChatForm";
-import { useScrollToBottom } from "../scrollToBottomButton/useScrollToBottom";
-import { handleSendMessage as handleSendMessageUtil } from "./utils";
-import ChatMessages from "./ChatMessages";
+import { sendMessage } from "@services/api";
+import ChatForm from "@components/chat/ChatForm";
+import ChatMessages from "@components/chat/ChatMessages";
+import { useScrollToBottom } from "@/components/scrollToBottomButton/useScrollToBottom";
+import { handleSendMessage as handleSendMessageUtil } from "@components/chat/utils";
 
 export default function ChatWindow({ 
   isOpen, 
@@ -22,9 +22,7 @@ export default function ChatWindow({
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState(null);
   const inputRef = useRef(null);
-  
-  // Hook personalizado para manejar el scroll
-  const {
+    const {
     showButton: showScrollButton,
     messagesEndRef,
     messagesContainerRef,

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { createScrollPositionChecker, checkScrollPositionDelayed, isNearBottom } from "./utils";
+import { createScrollPositionChecker, checkScrollPositionDelayed, isNearBottom } from "@/components/scrollToBottomButton/utils";
 
 /**
  * Hook personalizado para manejar el scroll hacia abajo y la visibilidad del botón
