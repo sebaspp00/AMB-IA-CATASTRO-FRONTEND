@@ -3,6 +3,8 @@ import { createUser, createConversation, sendMessage } from "@services/api";
 import { useUser } from "@contexts/UserContext";
 import ChatWindow from "@components/chat/ChatWindow";
 import { initializeChatSession } from "@components/chat/utils";
+import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/solid";
+
 
 export default function ChatButton() {
   const { user, userId, saveUser } = useUser();
@@ -51,11 +53,25 @@ export default function ChatButton() {
     <>
       <button
         onClick={toggleChat}
-        className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-all z-50"
+        className="
+          fixed bottom-6 right-6
+          bg-gradient-to-br from-blue-600 to-blue-700
+          hover:from-blue-700 hover:to-blue-800
+          text-white
+          w-14 h-14
+          rounded-full
+          shadow-xl
+          flex items-center justify-center
+          transition-all duration-300
+          hover:scale-110 hover:shadow-2xl
+          active:scale-95
+          z-50
+        "
         aria-label="Abrir chat"
       >
-        💬
+        <ChatBubbleLeftRightIcon className="w-7 h-7" />
       </button>
+
 
       <ChatWindow
         isOpen={isOpen}
