@@ -56,7 +56,6 @@ export default function ChatMessages({
 
         <div className="flex items-end gap-3">
           
-          {/* Contenedor mejorado para el textarea */}
           <div className="flex-1 bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 flex items-center hover:bg-gray-200 transition">
             <textarea
               ref={inputRef}
@@ -65,6 +64,12 @@ export default function ChatMessages({
                 setNewMessage(e.target.value);
                 e.target.style.height = "auto";
                 e.target.style.height = `${e.target.scrollHeight}px`;
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  handleSendMessage(e);
+                }
               }}
               placeholder="Escribe un mensaje..."
               disabled={isSendingInput}
