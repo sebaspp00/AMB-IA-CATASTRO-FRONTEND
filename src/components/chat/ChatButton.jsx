@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 import { createUser, createConversation, sendMessage } from "@services/api";
 import { useUser } from "@contexts/UserContext";
+import { useConfig } from "@contexts/ConfigContext";
 import ChatWindow from "@components/chat/ChatWindow";
 import { initializeChatSession } from "@components/chat/utils";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/solid";
 
 
+
 export default function ChatButton() {
   const { user, userId, saveUser } = useUser();
+  const config = useConfig();
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -26,9 +30,9 @@ export default function ChatButton() {
       const { user: newUser, conversation: newConversation, initialMessages } =
         await initializeChatSession({
           formData,
-          createUserFn: createUser,
-          createConversationFn: createConversation,
-          sendMessageFn: sendMessage,
+          createUserFn: (name, email) => createUser(name, email, config),
+          createConversationFn: (userId, title) => createConversation(userId, title, config),
+          sendMessageFn: (convId, userId, query) => sendMessage(convId, userId, query, config),
         });
 
       saveUser(newUser);
@@ -50,7 +54,7 @@ export default function ChatButton() {
   };
 
   return (
-    <>
+    <React.Fragment>
       <button
         onClick={toggleChat}
         className="
@@ -85,6 +89,6 @@ export default function ChatButton() {
         isLoading={isLoading}
         formError={error}
       />
-    </>
+    </React.Fragment>
   );
 }

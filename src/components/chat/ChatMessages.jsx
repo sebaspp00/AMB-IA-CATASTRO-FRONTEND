@@ -1,6 +1,6 @@
 import React from "react";
 import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
-import MessageList from "../MessageList";
+import MessageList from "./messages/MessageList";
 import ScrollToBottomButton from "../scrollToBottomButton/ScrollToBottomButton";
 
 export default function ChatMessages({
@@ -26,7 +26,7 @@ export default function ChatMessages({
   }, [newMessage]);
 
   return (
-    <>
+    <React.Fragment>
       {/* Área de mensajes */}
       <div
         ref={messagesContainerRef}
@@ -55,7 +55,7 @@ export default function ChatMessages({
         )}
 
         <div className="flex items-end gap-3">
-          
+
           {/* Contenedor mejorado para el textarea */}
           <div className="flex-1 bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 flex items-center hover:bg-gray-200 transition">
             <textarea
@@ -65,6 +65,12 @@ export default function ChatMessages({
                 setNewMessage(e.target.value);
                 e.target.style.height = "auto";
                 e.target.style.height = `${e.target.scrollHeight}px`;
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  handleSendMessage(e);
+                }
               }}
               placeholder="Escribe un mensaje..."
               disabled={isSendingInput}
@@ -78,18 +84,17 @@ export default function ChatMessages({
             type="submit"
             disabled={isSendingInput || !newMessage.trim()}
             className={`bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full flex items-center justify-center 
-                        ${
-                          isSendingInput || !newMessage.trim()
-                            ? "bg-blue-300 cursor-not-allowed"
-                            : "bg-blue-600 hover:bg-blue-700 active:scale-95"
-                        }`}
+                        ${isSendingInput || !newMessage.trim()
+                ? "bg-blue-300 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700 active:scale-95"
+              }`}
           >
             <PaperAirplaneIcon className="w-5 h-5 rotate-0" />
           </button>
 
         </div>
       </form>
-    </>
+    </React.Fragment>
   );
 }
 

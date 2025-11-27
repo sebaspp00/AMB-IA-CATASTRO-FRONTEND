@@ -11,7 +11,7 @@ export default function MessageList({ messages, isSending }) {
   }
 
   return (
-    <>
+    <React.Fragment>
       {messages.map((message, index) => (
         <MessageItem key={message.id || message.timestamp || index} message={message} />
       ))}
@@ -22,7 +22,7 @@ export default function MessageList({ messages, isSending }) {
           </div>
         </div>
       )}
-    </>
+    </React.Fragment>
   );
 }
 

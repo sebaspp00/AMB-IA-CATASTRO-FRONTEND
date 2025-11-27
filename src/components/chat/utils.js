@@ -126,3 +126,15 @@ export const handleSendMessage = async ({
         setIsSending(false);
     }
 };
+
+export const formatTimestamp = (timestamp) => {
+    if (!timestamp) return "";
+    try {
+        return new Date(timestamp).toLocaleTimeString("es-ES", {
+            hour: "2-digit",
+            minute: "2-digit",
+        });
+    } catch (e) {
+        return "";
+    }
+};

@@ -1,0 +1,44 @@
+# Archivos de desarrollo
+src/
+examples/
+node_modules/
+.vscode/
+.idea/
+*.log
+
+# Archivos de configuración de desarrollo
+.env
+.env.local
+.env.*.local
+vite.config.js
+eslint.config.js
+postcss.config.js
+index.html
+
+# Archivos de git
+.git/
+.gitignore
+.gitattributes
+
+# Archivos de documentación de desarrollo
+*.md
+!README.md
+
+# Archivos de testing
+test/
+tests/
+__tests__/
+*.test.js
+*.test.jsx
+*.spec.js
+*.spec.jsx
+
+# Archivos temporales
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# Build de desarrollo (solo se publica dist/)
+dist-ssr/
+

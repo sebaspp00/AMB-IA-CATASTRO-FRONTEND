@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - Widget de Chat AMB-IA</title>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .hero {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0 0 20px 0;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: left;
+        }
+
+        .feature h3 {
+            margin: 0 0 10px 0;
+            color: #667eea;
+            font-size: 1.3rem;
+        }
+
+        .feature p {
+            margin: 0;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .instructions {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .instructions h2 {
+            margin: 0 0 20px 0;
+            color: #333;
+        }
+
+        .instructions p {
+            color: #666;
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 5px;
+        }
+    </style>
+
+    <!-- DEPENDENCIAS - React desde CDN (requerido como peer dependency) -->
+    <!-- NOTA: Usando React 18.2.0 ya que React 19 aún no está disponible como build UMD estable en CDNs -->
+    <script crossorigin src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+
+    <!-- ESTILOS DEL WIDGET - Desde npm (jsDelivr CDN) -->
+    <!-- En producción, usar: https://cdn.jsdelivr.net/npm/amb-ia-chat-widget@latest/dist/amb-ia-chat-widget.css -->
+    <!-- Para desarrollo local, descomentar la línea siguiente y comentar la de CDN -->
+    <link rel="stylesheet" href="/dist/amb-ia-chat-widget.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/amb-ia-chat-widget@latest/dist/amb-ia-chat-widget.css"> -->
+</head>
+
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🤖 Widget de Chat AMB-IA</h1>
+            <p class="subtitle">Asistente IA Especializado en Temas Catastrales</p>
+
+            <div style="margin: 20px 0;">
+                <span class="badge">✅ Fácil de Integrar</span>
+                <span class="badge">🚀 Rápido</span>
+                <span class="badge">📱 Responsivo</span>
+                <span class="badge">🎨 Personalizable</span>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <h3>💬 Chat Inteligente</h3>
+                    <p>Responde preguntas sobre normativas catastrales, trámites y procedimientos administrativos.</p>
+                </div>
+
+                <div class="feature">
+                    <h3>🔌 Plug & Play</h3>
+                    <p>No requiere configuración compleja. Solo incluye el script y proporciona tu API key.</p>
+                </div>
+
+                <div class="feature">
+                    <h3>🎯 Configuración Simple</h3>
+                    <p>Solo necesitas proporcionar tu API key. La URL de la API ya está preconfigurada.</p>
+                </div>
+
+                <div class="feature">
+                    <h3>📦 Publicado en npm</h3>
+                    <p>Instala fácilmente con <code>npm install amb-ia-chat-widget</code> o usa el CDN directamente.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h2>📖 Cómo usar este widget</h2>
+
+            <p><strong>1. Haz clic en el botón flotante</strong> en la esquina inferior derecha de esta página.</p>
+
+            <p><strong>2. Completa el formulario</strong> con tu nombre y correo electrónico.</p>
+
+            <p><strong>3. Comienza a chatear</strong> con el asistente IA sobre temas catastrales.</p>
+
+            <div class="highlight">
+                <strong>💡 Tip:</strong> Puedes hacer preguntas como:
+                <ul>
+                    <li>"¿Qué documentos necesito para registrar una propiedad?"</li>
+                    <li>"¿Cómo solicito un certificado catastral?"</li>
+                    <li>"¿Cuáles son los impuestos prediales vigentes?"</li>
+                </ul>
+            </div>
+
+            <div
+                style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #667eea;">
+                <h3 style="margin-top: 0; color: #667eea;">📦 Instalación desde npm</h3>
+                <p style="margin: 10px 0; color: #666;">
+                    <strong>Opción 1: npm/yarn</strong>
+                </p>
+                <pre
+                    style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; margin: 10px 0;"><code>npm install amb-ia-chat-widget
+# o
+yarn add amb-ia-chat-widget</code></pre>
+
+                <p style="margin: 15px 0 10px 0; color: #666;">
+                    <strong>Opción 2: CDN (HTML vanilla)</strong>
+                </p>
+                <pre
+                    style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; margin: 10px 0;"><code>&lt;!-- React (peer dependency - React 18) --&gt;
+&lt;script src="https://unpkg.com/react@18/umd/react.production.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- Widget desde npm --&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/amb-ia-chat-widget@latest/dist/amb-ia-chat-widget.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/amb-ia-chat-widget@latest/dist/chat-widget.umd.js"&gt;&lt;/script&gt;</code></pre>
+
+                <p style="margin-top: 15px; color: #999; font-size: 0.9rem;">
+                    Esta página de demostración está usando el build local. En producción, usa el CDN de npm.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR DEL WIDGET -->
+    <div id="chat-widget-root"></div>
+
+    <!-- POLYFILL para process.env (necesario para navegador) -->
+    <script>
+        window.process = {
+            env: {
+                NODE_ENV: 'production'
+            }
+        };
+    </script>
+
+    <!-- SCRIPT DEL WIDGET - Desde npm (jsDelivr CDN) -->
+    <!-- 
+        OPCIONES DE CARGA:
+        
+        1. DESARROLLO LOCAL (actual):
+           <script src="/dist/chat-widget.umd.js"></script>
+        
+        2. PRODUCCIÓN DESDE NPM (descomentar para usar):
+           <script src="https://cdn.jsdelivr.net/npm/amb-ia-chat-widget@latest/dist/chat-widget.umd.js"></script>
+           O alternativamente con unpkg:
+           <script src="https://unpkg.com/amb-ia-chat-widget@latest/dist/chat-widget.umd.js"></script>
+    -->
+    <script src="/dist/chat-widget.umd.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/amb-ia-chat-widget@latest/dist/chat-widget.umd.js"></script> -->
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            try {
+                console.log('🚀 Iniciando widget AMB-IA Chat...');
+                console.log('📦 Modo:', window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'DESARROLLO LOCAL' : 'PRODUCCIÓN (npm)');
+                console.log('✅ React:', typeof React !== 'undefined' ? '✓ Cargado' : '✗ No disponible');
+                console.log('✅ ReactDOM:', typeof ReactDOM !== 'undefined' ? '✓ Cargado' : '✗ No disponible');
+                console.log('✅ ChatWidget:', typeof window.ChatWidget !== 'undefined' ? '✓ Cargado' : '✗ No disponible');
+
+                // Validar dependencias
+                if (typeof React === 'undefined' || typeof ReactDOM === 'undefined') {
+                    console.error('❌ React o ReactDOM no cargados');
+                    console.error('💡 Asegúrate de cargar React y ReactDOM antes del widget');
+                    alert('Error: React no disponible. Verifica que React y ReactDOM estén cargados.');
+                    return;
+                }
+
+                if (!window.ChatWidget) {
+                    console.error('❌ ChatWidget no disponible');
+                    console.error('💡 Verifica que el script del widget esté cargado correctamente');
+                    alert('Error: Widget no cargado. Verifica la ruta del script.');
+                    return;
+                }
+
+                // Obtener el componente del widget
+                const ChatWidgetComponent = window.ChatWidget.default || window.ChatWidget;
+
+                // ⚠️ IMPORTANTE: Reemplaza con tu API key real
+                // En producción, considera usar variables de entorno o un sistema de configuración seguro
+                const apiKey = 'one-sys-prod-VGpbeLRSIoWwvnrSFDrXjbEB7QVZrwBu';
+
+                if (!apiKey || apiKey === 'tu-api-key-aqui') {
+                    console.warn('⚠️ API key no configurada. El widget puede no funcionar correctamente.');
+                }
+
+                console.log('✅ Renderizando widget con API key...');
+
+                // Obtener contenedor y renderizar
+                const container = document.getElementById('chat-widget-root');
+
+                if (!container) {
+                    console.error('❌ Contenedor #chat-widget-root no encontrado');
+                    return;
+                }
+
+                // Limpiar contenedor antes de renderizar (evita conflictos)
+                container.innerHTML = '';
+
+                // Crear root de React y renderizar
+                const root = ReactDOM.createRoot(container);
+                root.render(
+                    React.createElement(ChatWidgetComponent, { apiKey: apiKey })
+                );
+
+                console.log('✅ Widget de Chat AMB-IA cargado correctamente');
+                console.log('💡 Abre el botón flotante en la esquina inferior derecha para comenzar');
+            } catch (error) {
+                console.error('❌ Error al cargar el widget:', error);
+                console.error('Stack trace:', error.stack);
+                alert('Error al cargar el widget: ' + error.message);
+            }
+        });
+    </script>
+</body>
+
+</html>
